@@ -1,0 +1,19 @@
+{
+  "name": "kpop-pulse-frontend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "ripple": "latest"
+  },
+  "devDependencies": {
+    "@ripple-ts/typescript-plugin": "latest",
+    "@ripple-ts/vite-plugin": "latest",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.0"
+  }
+}
