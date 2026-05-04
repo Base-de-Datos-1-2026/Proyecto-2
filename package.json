@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@elysia/openapi": "^1.4.15"
+  }
+}
