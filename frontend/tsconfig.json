@@ -11,6 +11,7 @@
     "moduleDetection": "force",
     "noEmit": true,
     "strict": true,
+    "jsx": "preserve",
     "plugins": [
       {
         "name": "@ripple-ts/typescript-plugin"
