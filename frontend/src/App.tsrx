@@ -1,3 +1,5 @@
-export component App() {
-  <main id="kpop-dashboard"></main>
+export function App() {
+  const main = document.createElement("main");
+  main.id = "kpop-dashboard";
+  return main;
 }
