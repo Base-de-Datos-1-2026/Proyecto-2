@@ -5,6 +5,7 @@ Sistema web para una tienda de K-pop: inventario, ventas, clientes, equipo, prov
 ## Inicio rapido
 
 ```bash
+cp .env.example .env
 docker compose up --build
 ```
 
@@ -12,12 +13,12 @@ Abrir:
 
 - Frontend: http://localhost:5173
 - API: http://localhost:3000/api/health
+- Documentacion API: http://localhost:3000/reference
 
 Credenciales para prueba:
 
-- Admin: `emily@kstoregalaxy.gt` (sin contraseña requerida para admin, solo login por email)
-- Empleado: `luis.angel@kstoregalaxy.gt` (contraseña configurada en BD)
-- Clientes: Sin contraseña requerida (solo nombre, email, teléfono)
+- Admin: `emily@kstoregalaxy.gt` / `admin123`
+- Empleado: `luis.angel@kstoregalaxy.gt` / `empleado123`
 
 Si ya habias levantado una version anterior, recrea los datos:
 
@@ -48,8 +49,6 @@ docker compose up --build
 - Categorias estrella: `GROUP BY`, `HAVING`, `COUNT` y `SUM`.
 - Resumen de ventas: consulta alimentada por `vista_resumen_ventas`.
 
-No se implemento el reporte CTE visible porque ese inciso fue excluido por solicitud.
-
 ## Base de datos
 
 Credenciales obligatorias de la rubrica:
@@ -58,7 +57,10 @@ Credenciales obligatorias de la rubrica:
 - Password: `secret`
 - Base de datos: `kpop_store`
 
-`database/db.sql` contiene DDL, claves primarias, claves foraneas, `NOT NULL`, checks, indices, vista y datos de prueba. La carga inicial incluye mas grupos femeninos como BABYMONSTER, ILLIT, Hearts2Hearts, KiiiKiii, aespa, IVE, TWICE, NewJeans, Red Velvet, NMIXX y LE SSERAFIM.
+`database/db.sql` contiene DDL, claves primarias, claves foraneas, `NOT NULL`, checks, indices, vista y datos de prueba.
+
+### Diagrama ER
+![alt text](docs/graphviz.png)
 
 ## Estructura
 
@@ -66,29 +68,11 @@ Credenciales obligatorias de la rubrica:
 .
 ├── backend/                 # API Elysia con SQL explicito
 ├── frontend/                # UI Ripple + Vite
-├── database/                # Script SQL principal y nota de ubicacion
+├── database/                # Script SQL principal
 ├── docs/                    # Modelo relacional, 3FN, ER y consultas
 ├── database/db.sql          # DDL, indices, vista y datos
-├── Diagrama_ER.png          # Diagrama ER actualizado
+├── diagrama_er.dot          # Codigo DOT del Diagrama ER (Graphviz)
 ├── docker-compose.yml
 ├── .env
 └── .env.example
 ```
-
-## Rubrica
-
-Parte I:
-
-- Diagrama ER: `Diagrama_ER.png` y `docs/diagrama_er.svg`.
-- Modelo relacional y 3FN: `docs/modelo_relacional_y_normalizacion.md`.
-- DDL, datos de prueba, indices y view: `database/db.sql`.
-
-Parte II:
-
-- Consultas visibles: pestaña "Reportes SQL".
-- Transaccion explicita: pestaña "Venta transaccional" y `backend/src/db.ts`.
-- Endpoints documentados: `docs/consultas_sql.md`.
-
-Parte III y IV:
-
-- CRUD, reportes, errores visibles, README, autenticacion y CSV estan implementados en la UI.
