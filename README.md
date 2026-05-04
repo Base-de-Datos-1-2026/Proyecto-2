@@ -51,7 +51,7 @@ docker compose up --build
 
 ## Base de datos
 
-Credenciales obligatorias de la rubrica:
+Credenciales:
 
 - Usuario: `proy2`
 - Password: `secret`
@@ -69,9 +69,8 @@ Credenciales obligatorias de la rubrica:
 ├── backend/                 # API Elysia con SQL explicito
 ├── frontend/                # UI Ripple + Vite
 ├── database/                # Script SQL principal
-├── docs/                    # Modelo relacional, 3FN, ER y consultas
-├── database/db.sql          # DDL, indices, vista y datos
-├── diagrama_er.dot          # Codigo DOT del Diagrama ER (Graphviz)
+├── docs/                         # Modelo relacional, 3FN, ER y consultas
+├── database/db.sql    # DDL, indices, vista y datos
 ├── docker-compose.yml
 ├── .env
 └── .env.example
