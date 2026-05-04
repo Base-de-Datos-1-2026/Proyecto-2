@@ -67,7 +67,7 @@ type State = {
 };
 
 import { apiBase, request, requestList } from './api';
-import { qs, qsa, escapeHtml, toTitleCase, headerLabel, formatCell, option } from './utils';
+import { qs, qsa, escapeHtml, toTitleCase, headerLabel, formatCell, option as selectOption } from './utils';
 import { personPayload } from './people';
 import { productPayload } from './products';
 import { reports } from './reports';
@@ -286,12 +286,12 @@ export function createDashboard(root: HTMLElement): void {
             </label>
             <label>Categoria
               <select name="id_categoria" required>
-                ${state.categories.map((item) => option(item.id_categoria, item.nombre_categoria, editing?.id_categoria)).join('')}
+                ${state.categories.map((item) => selectOption(item.id_categoria, item.nombre_categoria, editing?.id_categoria)).join('')}
               </select>
             </label>
             <label>Proveedor
               <select name="id_proveedor" required>
-                ${state.providers.map((item) => option(item.id_proveedor, item.nombre_proveedor, editing?.id_proveedor)).join('')}
+                ${state.providers.map((item) => selectOption(item.id_proveedor, item.nombre_proveedor, editing?.id_proveedor)).join('')}
               </select>
             </label>
             <label>Grupo K-pop
@@ -479,17 +479,17 @@ export function createDashboard(root: HTMLElement): void {
           <h2>Registrar venta</h2>
           <label>Cliente
             <select name="id_cliente" required>
-              ${state.customers.map((item) => option(item.id_usuario, `${item.nombre} - ${item.nit || 'CF'}`)).join('')}
+              ${state.customers.map((item) => selectOption(item.id_usuario, `${item.nombre} - ${item.nit || 'CF'}`)).join('')}
             </select>
           </label>
           <label>Empleado
             <select name="id_empleado" required>
-              ${state.employees.map((item) => option(item.id_usuario, item.nombre, state.user?.id_usuario)).join('')}
+              ${state.employees.map((item) => selectOption(item.id_usuario, item.nombre, state.user?.id_usuario)).join('')}
             </select>
           </label>
           <label>Producto
             <select name="id_producto" required>
-              ${state.products.map((item) => option(item.id_producto, `${item.nombre_producto} | stock ${item.stock}`)).join('')}
+              ${state.products.map((item) => selectOption(item.id_producto, `${item.nombre_producto} | stock ${item.stock}`)).join('')}
             </select>
           </label>
           <div class="two-cols">
@@ -536,7 +536,7 @@ export function createDashboard(root: HTMLElement): void {
             </div>
             <div class="report-actions">
               <span>${state.reportRows.length} filas</span>
-              ${selected.exportPath ? '<button class="primary export-button" id="export-csv" type="button">Descargar CSV</button>' : ''}
+              ${'exportPath' in selected ? '<button class="primary export-button" id="export-csv" type="button">Descargar CSV</button>' : ''}
             </div>
           </div>
           ${tableHtml(state.reportRows)}
@@ -737,7 +737,7 @@ export function createDashboard(root: HTMLElement): void {
     document.querySelector<HTMLButtonElement>('#export-csv')?.addEventListener('click', async () => {
       try {
         const selected = reports.find((report) => report.key === state.reportKey);
-        const exportPath = selected?.exportPath;
+        const exportPath = (selected as { exportPath?: string } | undefined)?.exportPath;
         if (!exportPath) {
           return;
         }
