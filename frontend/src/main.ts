@@ -1,5 +1,6 @@
 import { mount } from 'ripple';
-import { App } from './App.tsrx';
+// @ts-ignore - Svelte module typings are provided by the build tooling
+import App from './App.svelte';
 import { createDashboard } from './dashboard';
 import './styles.css';
 
