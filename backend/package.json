@@ -8,7 +8,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@elysiajs/cors": "latest",
+    "@elysia/cors": "^1.4.2",
+    "@elysia/openapi": "^1.4.15",
     "elysia": "latest",
     "pg": "^8.13.1"
   },
