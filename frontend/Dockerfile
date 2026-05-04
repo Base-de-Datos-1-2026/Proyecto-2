@@ -1,16 +1,16 @@
-FROM node:22-alpine AS build
+FROM oven/bun:1.3.11 AS build
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm ci
+COPY package.json bun.lock* ./
+RUN bun install --frozen-lockfile
 
 COPY index.html vite.config.ts tsconfig.json ./
 COPY src ./src
 
 ARG VITE_API_URL=http://localhost:3000/api
 ENV VITE_API_URL=$VITE_API_URL
-RUN npm run build
+RUN bun run build
 
 FROM nginx:1.27-alpine
 
