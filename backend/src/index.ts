@@ -603,7 +603,7 @@ export const app = new Elysia()
 
 app.listen(port);
 console.log(`KStore Galaxy API escuchando en http://localhost:${port}`);
-console.log(`Documentacion OpenAPI: http://localhost:${port}/reference`);
+console.log(`Documentacion OpenAPI: http://localhost:${port}/openapi`);
 
 process.on('SIGTERM', async () => {
   await pool.end();
