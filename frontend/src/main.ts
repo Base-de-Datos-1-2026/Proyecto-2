@@ -1,16 +1,10 @@
-import { mount } from 'ripple';
-import { App } from './App.tsrx';
 import { createDashboard } from './dashboard';
 import './styles.css';
 
-mount(App, {
-  target: document.getElementById('root')!,
-});
-
 queueMicrotask(() => {
-  const root = document.getElementById('kpop-dashboard');
+  const root = document.getElementById('root');
   if (!root) {
-    throw new Error('No se encontro el contenedor principal');
+    throw new Error('No se encontro el contenedor raiz');
   }
 
   createDashboard(root);
